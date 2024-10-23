@@ -79,7 +79,7 @@ test('should create page for [dynamic] route', () => {
 import BlogAuthorIdPageOrigin from '../../../../../roots/blog/[authorId]/page'
 import { Router, compileHref } from 'next-roots'
 
-export default function BlogAuthorIdPage({ params, ...otherProps }) {
+export default async function BlogAuthorIdPage({ params, ...otherProps }) {
   Router.setPageHref(compileHref('/cs/magazin/:authorId', (await params) || {}))
   {/* @ts-ignore */}
   return <BlogAuthorIdPageOrigin {...otherProps} params={params} pageHref={Router.getPageHref()} />
@@ -109,7 +109,7 @@ test('should create page for [[...optionalCatchAll]] route', () => {
 import ProductsPageOrigin from '../../../../../roots/products/[[...slugs]]/page'
 import { Router, compileHref } from 'next-roots'
 
-export default function ProductsPage({ params, ...otherProps }) {
+export default async function ProductsPage({ params, ...otherProps }) {
   Router.setPageHref(compileHref('/cs/produkty/:slugs*', (await params) || {}))
   {/* @ts-ignore */}
   return <ProductsPageOrigin {...otherProps} params={params} pageHref={Router.getPageHref()} />
@@ -260,7 +260,7 @@ test('should create page for [dynamic] route with generate static params and gen
 import BlogAuthorIdPageOrigin from '../../../../../roots/blog/[authorId]/page'
 import { Router, compileHref } from 'next-roots'
 
-export default function BlogAuthorIdPage({ params, ...otherProps }:any) {
+export default async function BlogAuthorIdPage({ params, ...otherProps }:any) {
   Router.setPageHref(compileHref('/cs/magazin/:authorId', (await params) || {}))
   {/* @ts-ignore */}
   return <BlogAuthorIdPageOrigin {...otherProps} params={params} pageHref={Router.getPageHref()} />

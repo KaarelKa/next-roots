@@ -41,7 +41,7 @@ export const tplDynamic = `
 import ${PATTERNS.originName}Origin from '${PATTERNS.originPath}'
 import { Router, compileHref } from 'next-roots'
 
-export default function ${PATTERNS.originName}({ params, ...otherProps }:any) {
+export default async function ${PATTERNS.originName}({ params, ...otherProps }:any) {
   Router.setPageHref(compileHref('${PATTERNS.pageHref}', (await params) || {}))
   {/* @ts-ignore */}
   return <${PATTERNS.originName}Origin {...otherProps} params={params} pageHref={Router.getPageHref()} />
