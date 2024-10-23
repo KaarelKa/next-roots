@@ -80,7 +80,7 @@ import BlogAuthorIdPageOrigin from '../../../../../roots/blog/[authorId]/page'
 import { Router, compileHref } from 'next-roots'
 
 export default function BlogAuthorIdPage({ params, ...otherProps }) {
-  Router.setPageHref(compileHref('/cs/magazin/:authorId', params))
+  Router.setPageHref(compileHref('/cs/magazin/:authorId', (await params) || {}))
   {/* @ts-ignore */}
   return <BlogAuthorIdPageOrigin {...otherProps} params={params} pageHref={Router.getPageHref()} />
 }
@@ -110,7 +110,7 @@ import ProductsPageOrigin from '../../../../../roots/products/[[...slugs]]/page'
 import { Router, compileHref } from 'next-roots'
 
 export default function ProductsPage({ params, ...otherProps }) {
-  Router.setPageHref(compileHref('/cs/produkty/:slugs*', params))
+  Router.setPageHref(compileHref('/cs/produkty/:slugs*', (await params) || {}))
   {/* @ts-ignore */}
   return <ProductsPageOrigin {...otherProps} params={params} pageHref={Router.getPageHref()} />
 }
@@ -261,7 +261,7 @@ import BlogAuthorIdPageOrigin from '../../../../../roots/blog/[authorId]/page'
 import { Router, compileHref } from 'next-roots'
 
 export default function BlogAuthorIdPage({ params, ...otherProps }:any) {
-  Router.setPageHref(compileHref('/cs/magazin/:authorId', params))
+  Router.setPageHref(compileHref('/cs/magazin/:authorId', (await params) || {}))
   {/* @ts-ignore */}
   return <BlogAuthorIdPageOrigin {...otherProps} params={params} pageHref={Router.getPageHref()} />
 }
@@ -269,7 +269,7 @@ export default function BlogAuthorIdPage({ params, ...otherProps }:any) {
 import {generateMetadata as generateMetadataOrigin} from '../../../../../roots/blog/[authorId]/page'
 
 export async function generateMetadata({ params, ...otherProps }:any) {
-  return generateMetadataOrigin({ ...otherProps, params, pageHref: compileHref('/cs/magazin/:authorId', params) })
+  return generateMetadataOrigin({ ...otherProps, params, pageHref: compileHref('/cs/magazin/:authorId', (await params) || {}) })
 }
 
 import {generateStaticParams as generateStaticParamsOrigin} from '../../../../../roots/blog/[authorId]/page'

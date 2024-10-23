@@ -11,13 +11,13 @@ import { withPageMetadataDecoratorFactory } from './decorators/with-page-metadat
 import { withPageViewportDecoratorFactory } from './decorators/with-page-viewport'
 import { withRouteSegmentConfigFactory } from './decorators/with-route-segment-config'
 import {
-  type CompileParams,
   compileTemplateFactory,
   DecoratorParams,
   getOriginNameFactory,
   getOriginPathFactory,
   getPatternsFromNames,
   removePropTypes,
+  type CompileParams,
 } from './tpl-utils'
 
 export const PATTERNS = getPatternsFromNames(
@@ -42,7 +42,7 @@ import ${PATTERNS.originName}Origin from '${PATTERNS.originPath}'
 import { Router, compileHref } from 'next-roots'
 
 export default function ${PATTERNS.originName}({ params, ...otherProps }:any) {
-  Router.setPageHref(compileHref('${PATTERNS.pageHref}', params))
+  Router.setPageHref(compileHref('${PATTERNS.pageHref}', (await params) || {}))
   {/* @ts-ignore */}
   return <${PATTERNS.originName}Origin {...otherProps} params={params} pageHref={Router.getPageHref()} />
 }
